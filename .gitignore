@@ -3,4 +3,5 @@
 !.editorconfig
 !.gitignore
 
+!README.md
 !*.lua
