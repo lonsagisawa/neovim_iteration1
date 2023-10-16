@@ -1,13 +1,13 @@
 -- lazy.nvim
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable',
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
     lazypath,
   })
 end
@@ -16,80 +16,84 @@ vim.opt.rtp:prepend(lazypath)
 
 plugins = {
   -- misc
-  'vim-jp/vimdoc-ja',
-  'lambdalisue/suda.vim',
+  "vim-jp/vimdoc-ja",
+  "lambdalisue/suda.vim",
   -- UI extend
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
-  'nvim-lualine/lualine.nvim',
-  'nvim-tree/nvim-tree.lua',
-  'nvim-tree/nvim-web-devicons',
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
-  'stevearc/dressing.nvim',
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  "nvim-lualine/lualine.nvim",
+  "nvim-tree/nvim-tree.lua",
+  "nvim-tree/nvim-web-devicons",
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  "stevearc/dressing.nvim",
   {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
+    "folke/which-key.nvim",
+    event = "VeryLazy",
     init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    opts = {}
+    opts = {},
   },
   {
-    'andymass/vim-matchup',
+    "andymass/vim-matchup",
     setup = function()
-      vim.g.matchup_matchparen_offscreen = { method = 'popup' }
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
   },
-  'RRethy/vim-illuminate',
-  'lewis6991/gitsigns.nvim',
-  'hiphish/rainbow-delimiters.nvim',
+  "RRethy/vim-illuminate",
+  "lewis6991/gitsigns.nvim",
+  "hiphish/rainbow-delimiters.nvim",
   {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    opts = {}
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
   },
   -- LSP
-  'neovim/nvim-lspconfig',
-  'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim',
-  'hrsh7th/cmp-nvim-lsp',
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/cmp-path',
-  'hrsh7th/cmp-cmdline',
-  'hrsh7th/nvim-cmp',
+  "neovim/nvim-lspconfig",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/nvim-cmp",
   {
-    'L3MON4D3/LuaSnip',
-    version = 'v2.*',
-    build = 'make install_jsregexp'
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
   },
-  'onsails/lspkind.nvim',
+  "onsails/lspkind.nvim",
   {
-    'ray-x/lsp_signature.nvim',
-    event = 'VeryLazy',
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
     opts = {},
-    config = function(_, opts) require('lsp_signature').setup(opts) end
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
   },
   {
-    'j-hui/fidget.nvim',
-    tag = 'legacy',
-    event = 'LspAttach',
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+  },
+  -- formatter
+  {
+    "stevearc/conform.nvim",
+    opts = {},
   },
   -- Telescope
-  { 'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+  { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
   },
-  { 
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-  }
 }
 
-require('lazy').setup(plugins, opts)
+require("lazy").setup(plugins, opts)
 
 -- colorscheme
-require('catppuccin').setup({
-  flavour = 'mocha',
+require("catppuccin").setup({
+  flavour = "mocha",
   integrations = {
     fidget = true,
     gitsigns = true,
@@ -98,19 +102,19 @@ require('catppuccin').setup({
     native_lsp = {
       enabled = true,
       virtual_text = {
-          errors = { "italic" },
-          hints = { "italic" },
-          warnings = { "italic" },
-          information = { "italic" },
+        errors = { "italic" },
+        hints = { "italic" },
+        warnings = { "italic" },
+        information = { "italic" },
       },
       underlines = {
-          errors = { "underline" },
-          hints = { "underline" },
-          warnings = { "underline" },
-          information = { "underline" },
+        errors = { "underline" },
+        hints = { "underline" },
+        warnings = { "underline" },
+        information = { "underline" },
       },
       inlay_hints = {
-          background = true,
+        background = true,
       },
     },
     treesitter = true,
@@ -120,12 +124,12 @@ require('catppuccin').setup({
     },
     illuminate = {
       enabled = true,
-      lsp = true
+      lsp = true,
     },
-    which_key = true,  
-  }
+    which_key = true,
+  },
 })
-vim.cmd.colorscheme 'catppuccin'
+vim.cmd.colorscheme("catppuccin")
 
 -- misc setup
 vim.opt.termguicolors = true
@@ -136,56 +140,56 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- bindings
-vim.g.mapleader = ' '
-vim.keymap.set({'n', 'v'}, 'j', 'gj')
-vim.keymap.set({'n', 'v'}, 'k', 'gk')
-vim.keymap.set({'n', 'x'}, '<Space>', '<Nop>')
-vim.keymap.set({'n', 'x'}, '<Plug>(lsp)', '<Nop>')
-vim.keymap.set({'n', 'x'}, 'm', '<Plug>(lsp)')
-vim.keymap.set({'n', 'x'}, '<Plug>(ff)', '<Nop>')
-vim.keymap.set({'n', 'x'}, ';', '<Plug>(ff)')
-vim.keymap.set({'n'}, '<C-p>', '<Cmd>Telescope find_files<CR>')
-vim.keymap.set({'n'}, '<Leader>e', '<Cmd>NvimTreeToggle<CR>')
+vim.g.mapleader = " "
+vim.keymap.set({ "n", "v" }, "j", "gj")
+vim.keymap.set({ "n", "v" }, "k", "gk")
+vim.keymap.set({ "n", "x" }, "<Space>", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Plug>(lsp)", "<Nop>")
+vim.keymap.set({ "n", "x" }, "m", "<Plug>(lsp)")
+vim.keymap.set({ "n", "x" }, "<Plug>(ff)", "<Nop>")
+vim.keymap.set({ "n", "x" }, ";", "<Plug>(ff)")
+vim.keymap.set({ "n" }, "<C-p>", "<Cmd>Telescope find_files<CR>")
+vim.keymap.set({ "n" }, "<Leader>e", "<Cmd>NvimTreeToggle<CR>")
 
 -- lualine
-require('lualine').setup({
+require("lualine").setup({
   options = {
-    theme = 'catppuccin'
-  }
+    theme = "catppuccin",
+  },
 })
 
 -- nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-require('nvim-tree').setup()
+require("nvim-tree").setup()
 
 -- treesitter
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    'astro',
-    'bash',
-    'css',
-    'diff',
-    'dockerfile',
-    'fish',
-    'gitignore',
-    'html',
-    'ini',
-    'javascript',
-    'jsdoc',
-    'json',
-    'json5',
-    'jsonc',
-    'lua',
-    'php',
-    'phpdoc',
-    'scss',
-    'svelte',
-    'toml',
-    'tsx',
-    'typescript',
-    'vue',
-    'yaml'
+    "astro",
+    "bash",
+    "css",
+    "diff",
+    "dockerfile",
+    "fish",
+    "gitignore",
+    "html",
+    "ini",
+    "javascript",
+    "jsdoc",
+    "json",
+    "json5",
+    "jsonc",
+    "lua",
+    "php",
+    "phpdoc",
+    "scss",
+    "svelte",
+    "toml",
+    "tsx",
+    "typescript",
+    "vue",
+    "yaml",
   },
   highlight = {
     enable = true,
@@ -193,54 +197,54 @@ require('nvim-treesitter.configs').setup {
   matchup = {
     enable = true,
   },
-}
+})
 
 -- rainbow-delimiters
-require('rainbow-delimiters.setup')
+require("rainbow-delimiters.setup")
 
 -- gitsigns
-require('gitsigns').setup()
+require("gitsigns").setup()
 
 -- mason
-require('mason').setup()
-require('mason-lspconfig').setup({
+require("mason").setup()
+require("mason-lspconfig").setup({
   ensure_installed = {
-    'astro',
-    'bashls',
-    'cssls',
-    'cssmodules_ls',
-    'unocss',
-    'denols',
-    'dockerls',
-    'docker_compose_language_service',
-    'eslint',
-    'html',
-    'jsonls',
-    'tsserver',
-    'lua_ls',
-    'marksman',
-    'intelephense',
-    'svelte',
-    'tailwindcss',
-    'volar',
-    'yamlls',
+    "astro",
+    "bashls",
+    "cssls",
+    "cssmodules_ls",
+    "unocss",
+    "denols",
+    "dockerls",
+    "docker_compose_language_service",
+    "eslint",
+    "html",
+    "jsonls",
+    "tsserver",
+    "lua_ls",
+    "marksman",
+    "intelephense",
+    "svelte",
+    "tailwindcss",
+    "volar",
+    "yamlls",
   },
   automatic_installation = true,
 })
 
 -- LSP
 local lsp_signature_config = {}
-local cmp = require('cmp')
-local lspkind = require('lspkind')
-require('lsp_signature').setup(lsp_signature_config)
-require('dressing').setup()
-require('fidget').setup()
+local cmp = require("cmp")
+local lspkind = require("lspkind")
+require("lsp_signature").setup(lsp_signature_config)
+require("dressing").setup()
+require("fidget").setup()
 
 cmp.setup({
   enabled = true,
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   window = {
@@ -248,42 +252,61 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
   }),
-  formatting = ({
+  formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol',
+      mode = "symbol",
       maxwidth = 50,
-      ellipsis_char = '...',
+      ellipsis_char = "...",
       before = function(entry, vim_item)
         return vim_item
-      end
-    })
-  })
+      end,
+    }),
+  },
+})
+
+-- conform.nvim
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    astro = { { "prettierd", "prettier" } },
+    html = { { "prettierd", "prettier" } },
+    css = { { "prettierd", "prettier" } },
+    javascript = { { "prettierd", "prettier" } },
+    typescript = { { "prettierd", "prettier" } },
+    jsx = { { "prettierd", "prettier" } },
+    tsx = { { "prettierd", "prettier" } },
+    vue = { { "prettierd", "prettier" } },
+    svelte = { { "prettierd", "prettier" } },
+  },
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_fallback = true,
+  },
 })
 
 -- telescope
-require('telescope').setup({
+require("telescope").setup({
   defaults = {
     mappings = {
       n = {
-        ['<Esc>'] = require('telescope.actions').close,
+        ["<Esc>"] = require("telescope.actions").close,
       },
       i = {
-        ['<Esc>'] = require('telescope.actions').close,
-      }
-    }
-  }
+        ["<Esc>"] = require("telescope.actions").close,
+      },
+    },
+  },
 })
-require('telescope').load_extension('fzf')
-
+require("telescope").load_extension("fzf")
