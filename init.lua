@@ -81,6 +81,8 @@ plugins = {
     "stevearc/conform.nvim",
     opts = {},
   },
+  -- nvim-lint
+  "mfussenegger/nvim-lint",
   -- Telescope
   { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
   {
@@ -150,6 +152,7 @@ vim.keymap.set({ "n", "x" }, "<Plug>(ff)", "<Nop>")
 vim.keymap.set({ "n", "x" }, ";", "<Plug>(ff)")
 vim.keymap.set({ "n" }, "<C-p>", "<Cmd>Telescope find_files<CR>")
 vim.keymap.set({ "n" }, "<Leader>e", "<Cmd>NvimTreeToggle<CR>")
+vim.keymap.set({ "n" }, "<Leader>t", "<Cmd>lua vim.lsp.buf.hover()<CR>")
 
 -- lualine
 require("lualine").setup({
@@ -295,6 +298,13 @@ require("conform").setup({
     lsp_fallback = true,
   },
 })
+
+-- linter
+require("lint").linters_by_ft = {
+  javascript = { "eslint_d" },
+  typescript = { "eslint_d" },
+  php = { "phpcs" },
+}
 
 -- telescope
 require("telescope").setup({
