@@ -48,6 +48,7 @@ plugins = {
     event = "InsertEnter",
     opts = {},
   },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   -- LSP
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
@@ -118,6 +119,11 @@ require("catppuccin").setup({
       inlay_hints = {
         background = true,
       },
+      indent_blankline = {
+        enabled = true,
+        scope_color = "lavender",
+        colored_indend_levels = false,
+      },
     },
     treesitter = true,
     rainbow_delimiters = true,
@@ -160,6 +166,9 @@ require("lualine").setup({
     theme = "catppuccin",
   },
 })
+
+-- indent-blankline
+require("ibl").setup()
 
 -- nvim-tree
 vim.g.loaded_netrw = 1
