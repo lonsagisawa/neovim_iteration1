@@ -146,6 +146,7 @@ vim.opt.tabstop = 2
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.cursorline = true
 
 -- bindings
 vim.g.mapleader = " "
